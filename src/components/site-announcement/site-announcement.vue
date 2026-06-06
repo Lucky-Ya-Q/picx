@@ -18,7 +18,6 @@
     width="500"
     :modal="false"
     draggable
-    @close="onClose"
   >
     <div class="announcement-item">
       {{ $t('header.announcement.text_2') }}
@@ -34,18 +33,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { store } from '@/stores'
 
 const dialogVisible = ref(false)
-const globalSettings = computed(() => store.getters.getGlobalSettings).value
 const userSettings = computed(() => store.getters.getUserSettings).value
-
-const onClose = () => {
-  store.dispatch('SET_GLOBAL_SETTINGS', {
-    showAnnouncement: false
-  })
-}
 
 const notRemindAgain = () => {
   dialogVisible.value = false
@@ -53,12 +45,6 @@ const notRemindAgain = () => {
     showAnnouncement: false
   })
 }
-
-onMounted(() => {
-  if (globalSettings.showAnnouncement && userSettings.showAnnouncement) {
-    dialogVisible.value = true
-  }
-})
 </script>
 
 <style scoped lang="stylus">

@@ -92,14 +92,14 @@ const userConfigInfo = computed(() => store.getters.getUserConfigInfo).value
 const globalSettings = computed(() => store.getters.getGlobalSettings).value
 
 const onLogin = () => {
-  router.push('/login')
+  router.push('/config')
   document.body.click()
 }
 
 // 退出登录
 const onLogout = () => {
   store.dispatch('LOGOUT')
-  router.push('/login')
+  router.push('/config')
   document.body.click()
   setTimeout(() => {
     window.location.reload()

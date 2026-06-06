@@ -48,6 +48,9 @@
   },
   "config_page": {
     "input_token": "请输入 GitHub Token ...",
+    "token_tip": "请生成具有仓库操作权限的 GitHub Token",
+    "view_docs": "查看教程",
+    "create_token": "创建 GitHub Token",
     "one_click_config": "一键配置",
     "loading_1": "正在加载用户信息 ...",
     "loading_4": "正在加载仓库目录数据 ...",
@@ -227,14 +230,6 @@
     "text_2": "建议将本站添加到浏览器收藏夹，方便下次使用。",
     "text_3": "如果 PicX 对你有帮助，欢迎赞赏作者，支持开源。",
     "text_4": "郑重声明：请勿使用 PicX 上传违反你当地法律的图片，所造成的一切后果与作者无关。"
-  },
-  "authorization": {
-    "text_2": "GitHub Token 登录",
-    "text_5": "正在使用 GitHub Token 登录",
-    "text_7": "切换",
-    "text_9": "请生成具有仓库操作权限的 GitHub Token",
-    "text_10": "查看教程",
-    "text_12": "创建 GitHub Token"
   },
   "copy_repo_img": {
     "text_1": "复制仓库图片",

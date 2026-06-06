@@ -10,12 +10,53 @@
     }
 
 
-    &.token {
-      display flex
-      justify-content space-between
+    &.token-section {
+      .token-input-row {
+        display flex
+        justify-content space-between
 
-      .el-button {
-        margin-left 20rem
+        .el-button {
+          margin-left 20rem
+        }
+      }
+
+      .token-tips-box {
+        display flex
+        gap 16rem
+        align-items center
+        justify-content space-between
+        margin-top 12rem
+        color var(--text-color-4)
+        font-size 13rem
+
+        .tip-text {
+          flex-shrink 0
+        }
+
+        .tip-links {
+          display flex
+          flex-shrink 0
+          gap 16rem
+          align-items center
+          justify-content flex-end
+
+          .tip-link {
+            display inline-flex
+            align-items center
+            color var(--el-color-primary)
+            font-weight bold
+            white-space nowrap
+            cursor pointer
+
+            .el-icon {
+              margin-right 4rem
+            }
+
+            &:hover {
+              border-bottom 1rem solid var(--el-color-primary)
+            }
+          }
+        }
       }
     }
 

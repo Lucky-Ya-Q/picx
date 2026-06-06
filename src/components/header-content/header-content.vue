@@ -2,10 +2,10 @@
   <header class="header-content-box border-box">
     <div class="header-left border-box">
       <div class="brand-box">
-        <div class="logo" @click="router.push('/')">
+        <div class="logo" @click="router.push('/config')">
           <img src="../../assets/logo.png" alt="PicX" />
         </div>
-        <div class="title" @click="router.push('/')">PicX</div>
+        <div class="title" @click="router.push('/config')">PicX</div>
       </div>
     </div>
 

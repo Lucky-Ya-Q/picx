@@ -1,21 +1,34 @@
 <template>
   <div class="page-container config-page-container">
-    <authorization-status-bar class="row-item" />
-
     <!-- GitHub Token -->
-    <div class="row-item token">
-      <el-input
-        ref="tokenInputRef"
-        v-model="userConfigInfo.token"
-        clearable
-        :autofocus="!userConfigInfo.token"
-        show-password
-        :placeholder="$t('config_page.input_token')"
-        @keydown.enter="oneClickAutoConfig(tokenInputRef)"
-      />
-      <el-button plain type="primary" @click="oneClickAutoConfig(tokenInputRef)">
-        {{ $t('config_page.one_click_config') }}
-      </el-button>
+    <div class="row-item token-section">
+      <div class="token-input-row">
+        <el-input
+          ref="tokenInputRef"
+          v-model="userConfigInfo.token"
+          clearable
+          :autofocus="!userConfigInfo.token"
+          show-password
+          :placeholder="$t('config_page.input_token')"
+          @keydown.enter="oneClickAutoConfig(tokenInputRef)"
+        />
+        <el-button plain type="primary" @click="oneClickAutoConfig(tokenInputRef)">
+          {{ $t('config_page.one_click_config') }}
+        </el-button>
+      </div>
+      <div class="token-tips-box">
+        <div class="tip-text">{{ $t('config_page.token_tip') }}</div>
+        <div class="tip-links">
+          <span class="tip-link" @click="openTokenDocs">
+            <el-icon><IEpDocument /></el-icon>
+            {{ $t('config_page.view_docs') }}
+          </span>
+          <span class="tip-link" @click="openCreateToken">
+            <el-icon><IEpLink /></el-icon>
+            {{ $t('config_page.create_token') }}
+          </span>
+        </div>
+      </div>
     </div>
 
     <!-- 基本信息 -->
@@ -138,7 +151,6 @@ import {
 } from '@/views/picx-config/picx-config.util'
 import { getDirInfoList } from '@/common/api'
 import i18n from '@/plugins/vue/i18n'
-import router from '@/router'
 
 const store = useStore()
 
@@ -150,6 +162,16 @@ const globalSettings = computed(() => store.getters.getGlobalSettings).value
 const newDirInputRef = ref<null | HTMLElement>(null)
 const tokenInputRef = ref<HTMLElement | null>(null)
 const repoDirCascaderKey = ref<string>('repoDirCascaderKey')
+
+const TOKEN_DOCS_URL = 'https://picx-docs.xpoet.cn/usage-guide/config.html#填写-github-token-登录'
+
+const openTokenDocs = () => {
+  window.open(TOKEN_DOCS_URL)
+}
+
+const openCreateToken = () => {
+  window.open('https://github.com/settings/tokens/new')
+}
 
 const dirModeChange = (dirMode: DirModeEnum) => {
   switch (dirMode) {
@@ -200,7 +222,7 @@ const refreshDirData = async () => {
 
 onMounted(() => {
   setTimeout(() => {
-    if (!userConfigInfo.token || router.currentRoute.value.query.focus === '1') {
+    if (!userConfigInfo.token) {
       tokenInputRef.value?.focus()
     }
   }, 100)

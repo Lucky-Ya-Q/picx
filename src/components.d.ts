@@ -58,7 +58,6 @@ declare module '@vue/runtime-core' {
     IEpCaretBottom: typeof import('~icons/ep/caret-bottom')['default']
     IEpCaretLeft: typeof import('~icons/ep/caret-left')['default']
     IEpCheck: typeof import('~icons/ep/check')['default']
-    IEpCircleCheckFilled: typeof import('~icons/ep/circle-check-filled')['default']
     IEpConnection: typeof import('~icons/ep/connection')['default']
     IEpCopyDocument: typeof import('~icons/ep/copy-document')['default']
     IEpDArrowLeft: typeof import('~icons/ep/d-arrow-left')['default']

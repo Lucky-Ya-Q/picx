@@ -1,13 +1,13 @@
 .login-container {
-  display grid
-  grid-gap 20rem
-  grid-template-rows repeat(1, 1fr)
-  grid-template-columns repeat(2, 1fr)
+  display flex
+  align-items center
+  justify-content center
 
   .box-item {
     display flex
     flex-direction column
     width 100%
+    max-width 420rem
     height 100%
     color var(--text-color-4)
     background var(--background-color-2)
@@ -28,12 +28,6 @@
 
         .el-icon {
           margin-right 4rem
-        }
-
-        .install-status {
-          margin-right 0
-          margin-left 4rem
-          color var(--el-color-success)
         }
 
         &.link {

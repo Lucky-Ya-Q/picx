@@ -61,47 +61,6 @@ export const goUploadPage = async (inputRef: any) => {
 }
 
 /**
- * PicX GitHub APP 安装状态处理
- * @param repoInfo
- * @param authorized
- * @param token
- */
-export const installedStatusHandle = async (repoInfo: any, authorized: boolean, token: string) => {
-  if (authorized && token) {
-    if (repoInfo) {
-      await store.dispatch('SET_GITHUB_AUTHORIZATION_INFO', {
-        installed: true
-      })
-    } else {
-      const msgInstance = ElMessage({
-        customClass: 'custom-message-container',
-        duration: 0,
-        offset: 20,
-        type: 'warning',
-        message: `<div class="content-box authorization">
-                    <span class="msg">${i18n.global.t('authorization.msg_2')}</span>
-                    <spna class="btn-box">
-                      <span class="confirm btn">${i18n.global.t('authorization.btn_1')}</span>
-                    </spna>
-                  </div>`,
-        dangerouslyUseHTMLString: true
-      })
-
-      document
-        .querySelector('.custom-message-container .authorization .confirm')
-        ?.addEventListener('click', () => {
-          msgInstance.close()
-          let url = import.meta.env.VITE_INSTALL_URL as string
-          if (userConfigInfo.id) {
-            url = import.meta.env.VITE_INSTALL_URL_USER + userConfigInfo.id
-          }
-          window.location.href = url
-        })
-    }
-  }
-}
-
-/**
  * 一键自动配置图床
  */
 export const oneClickAutoConfig = async (tokenInput: any) => {
@@ -119,9 +78,7 @@ export const oneClickAutoConfig = async (tokenInput: any) => {
   })
 
   try {
-    // 获取用户信息
     const userInfo = await getGitHubUserInfo(userConfigInfo.token)
-    console.log('getGitHubUserInfo >> ', userInfo)
 
     if (!userInfo) {
       loading.close()
@@ -129,20 +86,10 @@ export const oneClickAutoConfig = async (tokenInput: any) => {
       return
     }
 
-    // 保存 Token 到授权信息 store
-    if (!store.getters.getGitHubAuthorizationInfo.isAutoAuthorize) {
-      await store.dispatch('SET_GITHUB_AUTHORIZATION_INFO', {
-        manualToken: userConfigInfo.token
-      })
-    }
-
-    // 保存用户信息
     await saveUserInfo(userInfo)
 
-    // 判断是否已存在 PicX 图床仓库
     let isExistInitRepo: boolean = false
     const initRepoInfo = await getRepoInfo(userConfigInfo.owner, INIT_REPO_NAME)
-    console.log('initRepoInfo : ', initRepoInfo)
     if (initRepoInfo) {
       isExistInitRepo = true
       await store.dispatch('SET_USER_CONFIG_INFO', {
@@ -151,25 +98,15 @@ export const oneClickAutoConfig = async (tokenInput: any) => {
     }
 
     const repoInfo = await createRepo(userConfigInfo.token)
-    console.log('createRepo >> ', repoInfo)
-
-    // ---- PicX GitHub APP 安装状态处理
-    const authorizationInfo = computed(() => store.getters.getGitHubAuthorizationInfo).value
-    const { token, authorized } = authorizationInfo
-    await installedStatusHandle(repoInfo, authorized, token)
     if (!repoInfo) {
       loading.close()
-      if (!(authorized && token)) {
-        ElMessage.error({ message: i18n.global.t('config_page.message_3') })
-      }
+      ElMessage.error({ message: i18n.global.t('config_page.message_3') })
       return
     }
-    // --------------------------------
 
     userConfigInfo.repo = INIT_REPO_NAME
     userConfigInfo.branch = INIT_REPO_BARNCH
 
-    // 获取目录列表
     if (isExistInitRepo) {
       userConfigInfo.dirList = await getDirInfoList(userConfigInfo)
     }
@@ -180,7 +117,6 @@ export const oneClickAutoConfig = async (tokenInput: any) => {
     if (!isExistInitRepo) {
       await initRepoREADME(userConfigInfo)
     }
-    // 持久化存储用户配置信息
     await persistUserConfigInfo()
     loading.close()
     ElMessage.success({ message: i18n.global.t('config_page.message_4') })

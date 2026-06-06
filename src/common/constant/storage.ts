@@ -6,7 +6,6 @@ const PREFIX = 'PICX_'
 export const LS_CONFIG = `${PREFIX}CONFIG`
 export const LS_MANAGEMENT = `${PREFIX}MANAGEMENT`
 export const LS_SETTINGS = `${PREFIX}SETTINGS`
-export const LS_AUTHORIZATION = `${PREFIX}AUTHORIZATION`
 
 /**
  * SessionStorage Key

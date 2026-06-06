@@ -8,7 +8,6 @@ import uploadAreaModule from './modules/upload-area'
 import userSettingsModule from './modules/user-settings'
 import toolboxImageListModule from './modules/toolbox-image-list'
 import uploadImageListModule from './modules/upload-image-list'
-import githubAuthorizeModule from './modules/github-authorize'
 import deployStatusModule from './modules/deploy-status'
 
 // Create a new store instance
@@ -21,7 +20,6 @@ export const store = createStore<RootStateTypes>({
     userSettingsModule,
     toolboxImageListModule,
     uploadImageListModule,
-    githubAuthorizeModule,
     deployStatusModule
   },
   state: {

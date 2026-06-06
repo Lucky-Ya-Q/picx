@@ -136,10 +136,9 @@ import {
   oneClickAutoConfig,
   persistUserConfigInfo
 } from '@/views/picx-config/picx-config.util'
-import router from '@/router'
-import { isAuthorizeExpire } from '@/views/picx-login/picx-login.util'
 import { getDirInfoList } from '@/common/api'
 import i18n from '@/plugins/vue/i18n'
+import router from '@/router'
 
 const store = useStore()
 
@@ -189,14 +188,6 @@ const dirModeChange = (dirMode: DirModeEnum) => {
   persistUserConfigInfo()
 }
 
-const authorizeAutoConfig = () => {
-  const { token, isAutoAuthorize } = computed(() => store.getters.getGitHubAuthorizationInfo).value
-
-  if (isAutoAuthorize && token && !isAuthorizeExpire() && router.currentRoute.value.query.auto) {
-    oneClickAutoConfig(tokenInputRef.value)
-  }
-}
-
 const refreshDirData = async () => {
   const loading = ElLoading.service({
     lock: true,
@@ -212,7 +203,6 @@ onMounted(() => {
     if (!userConfigInfo.token || router.currentRoute.value.query.focus === '1') {
       tokenInputRef.value?.focus()
     }
-    authorizeAutoConfig()
   }, 100)
 })
 </script>

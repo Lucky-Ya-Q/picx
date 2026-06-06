@@ -13,7 +13,6 @@ import { useStore } from '@/stores'
 import { throttle } from '@/utils'
 import { ElementPlusSizeEnum } from '@/common/model'
 import MainContainer from '@/views/main-container/main-container.vue'
-import { initGithubAuthorize } from '@/views/picx-login/picx-login.util'
 
 const store = useStore()
 const elementPlusSize = ref<ElementPlusSizeEnum>(ElementPlusSizeEnum.default)
@@ -53,7 +52,6 @@ const init = () => {
   setThemeMode()
   // eslint-disable-next-line no-underscore-dangle
   window.pluginWebUpdateNotice_?.setLocale('zh_CN')
-  initGithubAuthorize()
 }
 
 onMounted(() => {

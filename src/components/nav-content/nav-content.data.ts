@@ -44,10 +44,10 @@ export const navInfoList = shallowRef([
   },
   {
     uuid: getUuid(),
-    name: 'nav.feedback',
-    icon: IEpChatDotRound,
+    name: 'nav.changelog',
+    icon: IEpNotebook,
     isActive: false,
-    path: '/feedback',
+    path: '/changelog',
     isShow: true
   }
 ])

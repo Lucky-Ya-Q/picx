@@ -3,7 +3,6 @@ import upload from '@/views/upload-image/upload-image.vue'
 import management from '@/views/imgs-management/imgs-management.vue'
 import settings from '@/views/picx-settings/picx-settings.vue'
 import toolbox from '@/views/picx-toolbox/picx-toolbox.vue'
-import feedback from '@/views/feedback-info/feedback-info.vue'
 import compressTool from '@/components/tools/compress-tool/compress-tool.vue'
 import base64Tool from '@/components/tools/base64-tool/base64-tool.vue'
 import watermarkTool from '@/components/tools/watermark-tool/watermark-tool.vue'
@@ -72,12 +71,16 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
-    path: '/feedback',
-    name: 'feedback',
-    component: feedback,
+    path: '/changelog',
+    name: 'changelog',
+    component: () => import('@/views/changelog/changelog-page.vue'),
     meta: {
-      title: 'nav.feedback'
+      title: 'nav.changelog'
     }
+  },
+  {
+    path: '/feedback',
+    redirect: '/changelog'
   },
   {
     path: '/:catchAll(.*)',

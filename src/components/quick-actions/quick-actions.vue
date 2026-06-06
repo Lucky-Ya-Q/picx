@@ -1,7 +1,7 @@
 <template>
   <el-popover
     placement="bottom-end"
-    :width="globalSettings.language === 'en' ? '230rem' : '190rem'"
+    width="190rem"
     trigger="click"
     :show-arrow="false"
     :popper-style="{
@@ -42,7 +42,6 @@ import { computed } from 'vue'
 import { store } from '@/stores'
 
 const userSettings = computed(() => store.getters.getUserSettings).value
-const globalSettings = computed(() => store.getters.getGlobalSettings).value
 
 const persistUserSettings = () => {
   store.dispatch('USER_SETTINGS_PERSIST')

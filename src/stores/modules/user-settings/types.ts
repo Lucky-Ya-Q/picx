@@ -1,4 +1,4 @@
-import { ElementPlusSizeEnum, LanguageEnum, ThemeModeEnum, UserSettingsModel } from '@/common/model'
+import { ElementPlusSizeEnum, ThemeModeEnum, UserSettingsModel } from '@/common/model'
 
 export enum ImgLinkRuleActionsEnum {
   // eslint-disable-next-line no-unused-vars
@@ -10,8 +10,6 @@ export enum ImgLinkRuleActionsEnum {
 export interface GlobalSettingsModel {
   folded: boolean
   elementPlusSize: ElementPlusSizeEnum
-  language: LanguageEnum
-  languageToggleTip: boolean
   theme: ThemeModeEnum
   showAnnouncement: boolean
   useCloudSettings: boolean

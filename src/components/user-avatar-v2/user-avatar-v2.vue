@@ -42,20 +42,6 @@
       </li>
       <el-divider v-if="userConfigInfo.logined" />
       <li class="content-item border-box">
-        <span class="flex-center">{{ $t('language') }}</span>
-        <el-select
-          size="small"
-          style="width: 100rem"
-          v-model="globalSettings.language"
-          @change="persistGlobalSettings"
-        >
-          <el-option label="中文简体" :value="LanguageEnum.zhCN"></el-option>
-          <el-option label="中文繁體" :value="LanguageEnum.zhTW"></el-option>
-          <el-option label="English" :value="LanguageEnum.en"></el-option>
-        </el-select>
-      </li>
-      <el-divider />
-      <li class="content-item border-box">
         <span class="flex-center">{{ $t('header.theme') }}</span>
         <el-select
           size="small"
@@ -97,7 +83,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/stores'
 import { getGitHubOwnerURL } from '@/utils'
-import { LanguageEnum, ThemeModeEnum } from '@/common/model'
+import { ThemeModeEnum } from '@/common/model'
 
 const router = useRouter()
 const store = useStore()

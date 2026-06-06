@@ -4,7 +4,6 @@ import {
   ElementPlusSizeEnum,
   ImageLinkRuleModel,
   ImageLinkTypeEnum,
-  LanguageEnum,
   ThemeModeEnum,
   UserSettingsModel,
   WatermarkPositionEnum
@@ -106,8 +105,6 @@ const initGlobalSettings = (): GlobalSettingsModel => {
     showAnnouncement: true,
     folded: false,
     elementPlusSize: ElementPlusSizeEnum.default,
-    language: LanguageEnum.zhCN,
-    languageToggleTip: true,
     theme: ThemeModeEnum.system,
     useCloudSettings: false
   }
